@@ -1,49 +1,14 @@
 
-.. image:: https://readthedocs.org/projects/numpydl/badge/
-    :target: http://numpydl.readthedocs.org/en/latest/
-
-.. image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :target: https://github.com/oujago/NumpyDL/blob/master/LICENSE
-
-.. image:: https://api.travis-ci.org/oujago/NumpyDL.svg
-    :target: https://travis-ci.org/oujago/NumpyDL
-
-.. image:: https://coveralls.io/repos/github/oujago/NumpyDL/badge.svg
-    :target: https://coveralls.io/github/oujago/NumpyDL
-
-.. image:: https://badge.fury.io/py/npdl.svg
-    :target: https://badge.fury.io/py/npdl
-
-.. image:: https://img.shields.io/badge/python-3.5-blue.svg
-    :target: https://pypi.python.org/pypi/npdl
-
-.. image:: https://img.shields.io/badge/python-3.6-blue.svg
-    :target: https://pypi.python.org/pypi/npdl
-
-.. https://codeclimate.com/github/oujago/NumpyDL/badges/gpa.svg
-   :target: https://codeclimate.com/github/oujago/NumpyDL
-
-.. image:: https://codeclimate.com/github/oujago/NumpyDL/badges/issue_count.svg
-   :target: https://codeclimate.com/github/oujago/NumpyDL
-
-.. image:: https://img.shields.io/github/issues/oujago/NumpyDL.svg
-   :target: https://github.com/oujago/NumpyDL
-
-.. image:: https://zenodo.org/badge/83100910.svg
-   :target: https://zenodo.org/badge/latestdoi/83100910
-
-
-
-NumpyDL: Numpy Deep Learning Library
+MiKeras: Numpy-based Deep Learning Library
 ====================================
 
 Descriptions
 ============
 
-``NumpyDL`` is:
+``MiKeras`` is:
 
 1. Based on Pure Numpy/Python
-2. For DL Education
+2. For Deep Learning Education
 
 
 Features
@@ -54,33 +19,20 @@ Its main features are:
 1. *Pure* in Numpy
 2. *Native* to Python
 3. *Automatic differentiations* are basically supported
-4. *Commonly used models* are provided: MLP, RNNs, LSTMs and CNNs
+4. *Commonly used models* are provided: MLP(multi-layer perceptrons), RNNs, LSTMs and CNNs
 5. *Examples* for several AI tasks
-6. *Application* for a toy chatbot
+6. *Application* for a toy chatbot (based on seq2seq that implemented in MiKeras)
 
 
 Documentation
 =============
 
-Available online documents:
-
-1. `latest docs <http://numpydl.readthedocs.io/en/latest>`_
-2. `development docs <http://numpydl.readthedocs.io/en/develop/>`_
-3. `stable docs <http://numpydl.readthedocs.io/en/stable/>`_
-
-Available offline PDF:
-
-1. `latest PDF <http://readthedocs.org/projects/numpydl/downloads/pdf/latest>`_
+Still building...
 
 
 Installation
 ============
 
-Install NumpyDL using pip:
-
-.. code-block:: bash
-
-    $> pip install npdl
 
 Install from source code:
 
@@ -92,7 +44,7 @@ Install from source code:
 Examples
 ========
 
-``NumpyDL`` provides several examples of AI tasks:
+``MiKeras`` provides several examples of AI tasks:
 
 * sentence classification
     * LSTM in *examples/lstm_sentence_classification.py*
@@ -111,10 +63,10 @@ One concrete code example in *examples/mlp-digits.py*:
 
     import numpy as np
     from sklearn.datasets import load_digits
-    import npdl
+    import mikeras
 
     # prepare
-    npdl.utils.random.set_seed(1234)
+    mikeras.utils.random.set_seed(1234)
 
     # data
     digits = load_digits()
@@ -124,20 +76,20 @@ One concrete code example in *examples/mlp-digits.py*:
     n_classes = np.unique(Y_train).size
 
     # model
-    model = npdl.model.Model()
-    model.add(npdl.layers.Dense(n_out=500, n_in=64, activation=npdl.activation.ReLU()))
-    model.add(npdl.layers.Dense(n_out=n_classes, activation=npdl.activation.Softmax()))
-    model.compile(loss=npdl.objectives.SCCE(), optimizer=npdl.optimizers.SGD(lr=0.005))
+    model = mikeras.model.Model()
+    model.add(mikeras.layers.Dense(n_out=500, n_in=64, activation=mikeras.activation.ReLU()))
+    model.add(mikeras.layers.Dense(n_out=n_classes, activation=mikeras.activation.Softmax()))
+    model.compile(loss=mikeras.objectives.SCCE(), optimizer=mikeras.optimizers.SGD(lr=0.005))
 
     # train
-    model.fit(X_train, npdl.utils.data.one_hot(Y_train), max_iter=150, validation_split=0.1)
+    model.fit(X_train, mikeras.utils.data.one_hot(Y_train), max_iter=150, validation_split=0.1)
 
 
 
 Applications
 ============
 
-``NumpyDL`` provides one toy application:
+``MiKeras`` provides one toy application:
 
 * Chatbot
     * seq2seq in *applications/chatbot/model.py*
@@ -152,7 +104,7 @@ And its final result:
 Supports
 ========
 
-``NumpyDL`` supports following deep learning techniques:
+``MiKeras`` supports following deep learning techniques:
 
 * Layers
     * Linear
@@ -161,13 +113,12 @@ Supports
     * Dropout
     * Convolution
     * Embedding
-    * BatchNormal
-    * MeanPooling
-    * MaxPooling
+    * BatchNorm
+    * Pooling (Mean,Max)
     * SimpleRNN
     * GRU
     * LSTM
-    * Flatten
+    * Flatten (same idea as in Keras)
     * DimShuffle
 * Optimizers
     * SGD
